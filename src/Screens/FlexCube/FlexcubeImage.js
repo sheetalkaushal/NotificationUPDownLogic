@@ -1,45 +1,54 @@
-import React from 'react';
-import { View, Image } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-import MaskedView from '@react-native-masked-view/masked-view';
+import { View, Text, StyleSheet, Image } from 'react-native'
+import React from 'react'
 
 const FlexcubeImage = () => {
-    return (
-        <MaskedView
-            style={{ flex: 1 }}
-            maskElement={
-                <View style={{ flex: 1, backgroundColor: 'transparent', marginLeft: 10 }}>
-                    <Svg height="100%" width="100%" viewBox="0 0 100 100">
-                        <Path
-                            d='M 0 0 L 100 30 L 100 151 L 0 120 Z'
-                            fill="white"
-                        />
-                    </Svg>
-                    {/* <Svg height="20%" width="20%" viewBox="0 0 100 100">
-                        <Path d='M 0 30 L 100 0 L 120 L 0 151 Z'
-                            fill='white' />
-                    </Svg>
-                    <Svg height="20%" width="20%" viewBox="0 0 100 100" >
-                        <Path d='M 99 35 L 0 70 L 100 L 201 70 Z'
-                            fill='white' />
-                    </Svg> */}
-                </View>
-            }
-        >
-            <Image
-                source={{ uri: "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg" }}
-                style={{ flex: 1 }}
-                resizeMode="cover"
-            />
-            {/* <Image source={{ uri: "https://www.pexels.com/photo/674010/download/" }}
-                style={{ flex: 1 }}
-                resizeMode='cover' />
-            <Image source={{ uri: "https://images.ctfassets.net/hrltx12pl8hq/3Z1N8LpxtXNQhBD5EnIg8X/975e2497dc598bb64fde390592ae1133/spring-images-min.jpg" }}
-                style={{ flex: 1 }}
-                resizeMode='cover' /> */}
+  return (
+    <View style={styles.container}>
+      <View style={[styles.face, styles.top]}>
+        <Image
+          source={{ uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg' }}
+          style={styles.image}
+        />
+      </View>
+      <View style={[styles.face, styles.left]}>
+        <Image
+          source={{ uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80' }}
+          style={styles.image}
+        />
+      </View>
+      <View style={[styles.face, styles.right]}>
+        <Image
+          source={{ uri: 'https://cdn.pixabay.com/photo/2019/05/29/20/01/sunset-4238445_960_720.jpg' }}
+          style={styles.image}
+        />
+      </View>
+    </View>
+  )
+}
 
-        </MaskedView>
-    );
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red'
+  },
+  face: {
+    position: 'absolute',
+    width: 80,
+    height: 50,
+    backgroundColor: 'transparent',
+    borderColor: 'black',
 
-export default FlexcubeImage;
+  },
+  left: { transform: [{ rotateY: '-80deg' }, { translateX: -30 }, { scaleX: 3 }, { scaleY: 1 }] },
+  right: { transform: [{ rotateY: '80deg' }, { translateX: 190 }, { scaleX: 3 }, { scaleY: 1 }] },
+  top: { transform: [{ rotateX: '40deg' }, { rotateZ: '40deg' }, { translateY: -70 }, { scaleX: 1 }, { scaleY: 1 }] },
+  image: {
+    flex: 1,
+    width: '100%',
+    height: 100,
+    resizeMode: 'cover',
+  },
+});
+export default FlexcubeImage
